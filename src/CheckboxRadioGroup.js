@@ -8,6 +8,7 @@ const CheckboxRadioGroup = props => (
       return (
         <label key={opt}>
           <input
+            id={props.id}
             className={props.fieldClassName}
             name={props.name}
             onChange={props.handleOnChange}
@@ -24,6 +25,7 @@ const CheckboxRadioGroup = props => (
 
 CheckboxRadioGroup.propTypes = {
   heading: PropTypes.string,
+  id: PropTypes.string,
   label: PropTypes.string,
   fieldClassName: PropTypes.string,
   type: PropTypes.oneOf(['checkbox', 'radio']),

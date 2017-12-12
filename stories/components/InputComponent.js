@@ -40,7 +40,6 @@ const InputComponentStory = withInfo(
       labelClassName="Full Name"
       placeholder="Enter Full Name"
     />
-
     <InputComponent
       label="Full Name"
       gridClassName="col-md-12 col-sm-12 col-xs-12"
@@ -48,7 +47,6 @@ const InputComponentStory = withInfo(
       validationError={true}
       validationErrorMessage="Error message goes here"
     />
-
     <InputComponent
       label="Full Name"
       gridClassName="col-md-12 col-sm-12 col-xs-12"

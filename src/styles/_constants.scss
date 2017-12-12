@@ -21,7 +21,7 @@ $base-font: 1.5rem;
 $medium-font: 1.5rem;
 $mediumplus-font: 2rem;
 $large-font: 2.4rem;
-$larger-font: 3rem;
+$larger-font: 2.8rem;
 $largest-font: 4rem;
 /////////////////////////////////////////
 // - Spacing - //
@@ -59,3 +59,12 @@ $small-border-radius: $base-border-radius / 2;
   border: $base-border-radius solid $red;
   width: calc(100% +1.9rem);
 }
+/////////////////////////////////////////
+// - line height - //
+/////////////////////////////////////////
+$base-line-height: 1.4rem;
+
+/////////////////////////////////////////
+// - PageHeader - //
+/////////////////////////////////////////
+$mast-height: 8rem;

@@ -17,40 +17,33 @@ describe('<PageHeader />', () => {
   });
 
   it('verify the className', () => {
-    expect(pageHeader.props().className).toBe('container-fluid pageHeader');
+    expect(pageHeader.props().className).toBe('page-header-mast');
   });
 
   it('find element with tag', () => {
-    const divElement = pageHeader.find('div');
-    const buttonElement = pageHeader.find('button');
-
-    expect(divElement.length).toEqual(5);
-    expect(buttonElement.length).toEqual(1);
+    expect(pageHeader.find('div').length).toEqual(6);
+    expect(pageHeaderwithProps.find('button').length).toEqual(1);
   });
 
   it('find element with class and default props', () => {
-    const divElementArr = pageHeader.find('.row');
-    const divElement1 = pageHeader.find('.page-title');
-    const buttonElement1 = pageHeader.find('.primary-btn');
-
-    expect(divElementArr.length).toEqual(1);
-    expect(divElement1.props().className).toBe('page-title text-left');
-    expect(divElement1.props().children).toEqual('CaseName');
-    expect(buttonElement1.props().className).toBe('primary-btn pull-right');
-    expect(buttonElement1.props().children).toEqual('Save Form');
+    expect(pageHeader.find('.row').length).toEqual(1);
+    expect(pageHeader.find('.page-title').props().className).toBe(
+      'page-title text-left'
+    );
   });
 
   it('check default props', () => {
-    const instance = pageHeader.instance();
-
-    expect(instance.props.pageTitle).toEqual('CaseName');
+    expect(pageHeader.instance().props.pageTitle).toEqual('CaseName');
   });
 
   it('find element with class and object passed as props', () => {
-    const divElement1 = pageHeaderwithProps.find('.page-title');
-
-    expect(divElement1.props().className).toBe('page-title text-left');
-    expect(divElement1.props().children).toEqual('testPageTitle');
+    expect(pageHeaderwithProps.find('.page-title').props().className).toBe(
+      'page-title text-left'
+    );
+    expect(pageHeaderwithProps.find('.page-title').props().children).toEqual(
+      'testPageTitle'
+    );
+    expect(pageHeaderwithProps.find('button').length).toBe(1);
   });
 
   describe('#handleScroll', () => {
@@ -135,6 +128,38 @@ describe('<PageHeader />', () => {
         const pageHeaderElement = shallow(<PageHeader />);
 
         expect(pageHeaderElement.props().style).toEqual(undefined);
+      });
+    });
+  });
+
+  describe('#render page header button', () => {
+    describe('default button', () => {
+      it('displays default button', () => {
+        const pageHeader = shallow(<PageHeader />);
+
+        expect(pageHeader.find('button').length).toEqual(1);
+      });
+    });
+
+    describe('customize button', () => {
+      it('displays customize button', () => {
+        const buttonCustomize = (
+          <button type="button" className="primary-btn pull-right">
+            Save Form
+          </button>
+        );
+        const pageHeader = shallow(<PageHeader button={buttonCustomize} />);
+
+        expect(pageHeader.find('button').length).toEqual(1);
+        expect(pageHeader.find('button').text()).toEqual('Save Form');
+      });
+    });
+
+    describe('no button', () => {
+      it('displays no button', () => {
+        const pageHeader = shallow(<PageHeader button={null} />);
+
+        expect(pageHeader.find('button').length).toEqual(0);
       });
     });
   });

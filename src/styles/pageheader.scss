@@ -2,8 +2,7 @@
  PAGE HEADER STYLING
 ***/
 
-.pageHeader {
-  padding: 1.563em;
+.page-header-mast {
   background: $dark-ash-blue;
   background: -webkit-linear-gradient(
     left,
@@ -33,24 +32,31 @@
     $ash-green 90%,
     $dark-ash-blue 100%
   );
+  height: set-height();
+  padding-bottom: $medium-spacing;
+  padding-top: $medium-spacing;
   position: sticky;
   width: 100%;
+  vertical-align: middle;
   transition: top 0.2s ease;
   z-index: 1;
 }
 .page-title {
-  font-size: 26pt;
   color: $white;
+  font-size: $larger-font;
+  height: (5rem / $mast-height) * 100%;
+  padding-bottom: $extra-small-spacing;
+  padding-top: $extra-small-spacing;
 }
 .primary-btn {
-  min-height: 2.5em;
-  border: 2px solid $white;
-  border-radius: 0.125em;
-  min-width: 6.25em;
   background: transparent;
-  font-size: 16pt;
+  border: solid $regular-border $white;
+  border-radius: $small-border-radius;
   color: $white;
   cursor: pointer;
+  font-size: $medium-font;
+  font-weight: $semibold-weight;
+  line-height: 1.321rem;
+  padding: $medium-spacing;
 }
-
 /** ENDS **/

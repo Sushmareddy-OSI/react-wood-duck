@@ -6,9 +6,7 @@ import './EnzymeSetup';
 describe('DropDownField', function() {
   let onChangeSpy = jasmine.createSpy('onChange');
   let props = {
-    name: 'Hi',
-    options: [],
-    id: '123ABCD',
+    options: ['Male', 'Female'],
     selectedOption: 'California',
     placeholder: 'Values',
     gridClassName: 'Grid class name',
@@ -23,13 +21,12 @@ describe('DropDownField', function() {
     expect(wrapper.hasClass('form-group')).toEqual(true);
   });
   it('has props', () => {
-    expect(instance.props.name).toEqual('Hi');
-    expect(instance.props.options).toEqual([]);
-    expect(instance.props.id).toEqual('123ABCD');
+    expect(instance.props.options).toEqual(['Male', 'Female']);
     expect(instance.props.selectedOption).toEqual('California');
     expect(instance.props.placeholder).toEqual('Values');
     expect(instance.props.gridClassName).toEqual('Grid class name');
     expect(instance.props.label).toEqual('label name');
     expect(instance.props.selectClassName).toEqual('classnames');
+    expect(instance.props.onChange).toEqual(onChangeSpy);
   });
 });

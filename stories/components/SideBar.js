@@ -47,8 +47,9 @@ const navLinks = (
 );
 
 const CenterDecorator = story => <div>{story()}</div>;
-const SideBarStory = withInfo(
-  `
+const SideBarStory = withInfo({
+  inline: false,
+  text: `
     #### Usage
     - A side navigation component serves as a generic component. It renders content passed as *children*. Below examples show how to render navigation links.
 
@@ -72,8 +73,8 @@ const SideBarStory = withInfo(
 
     - Please refer to "Navigation Components > NavLinks" menu to learn more on how to construct simple navigation links & nested navigation links.
 
- `
-)(() => (
+ `,
+})(() => (
   <div>
     <div className="row">
       <SideBar columnWidth={3}>{navLinks}</SideBar>

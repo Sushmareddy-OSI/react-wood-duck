@@ -16,7 +16,7 @@ class PageHeader extends Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
   handleScroll(currentWindow = window, currentDocument = document) {
-    var element = currentDocument.querySelector('.pageHeader');
+    var element = currentDocument.querySelector('.page-header-mast');
     var pageY = window.scrollY;
     pageY = currentWindow.scrollY;
     if (pageY !== 0 && element.getBoundingClientRect().bottom > 100) {
@@ -31,27 +31,34 @@ class PageHeader extends Component {
         top: '0.000em',
       };
     }
+
     return (
-      <div className="container-fluid pageHeader" style={stickyClass}>
-        <div className="row">
-          <div className="col-xs-6">
-            <div className="page-title text-left">{this.props.pageTitle}</div>
-          </div>
-          <div className="col-xs-6">
-            <button type="button" className="primary-btn pull-right">
-              Save Form
-            </button>
+      <div className="page-header-mast" style={stickyClass}>
+        <div className="container">
+          <div className="row">
+            <div className="col-xs-9">
+              <div className="page-title text-left">{this.props.pageTitle}</div>
+            </div>
+            <div className="col-xs-3">{this.props.button}</div>
           </div>
         </div>
       </div>
     );
   }
 }
+
+const buttonDefault = (
+  <button type="button" className="primary-btn pull-right">
+    Customize
+  </button>
+);
 PageHeader.propTypes = {
+  button: PropTypes.node,
   pageTitle: PropTypes.string,
 };
 PageHeader.defaultProps = {
   pageTitle: `CaseName`,
+  button: buttonDefault,
 };
 
 export default PageHeader;

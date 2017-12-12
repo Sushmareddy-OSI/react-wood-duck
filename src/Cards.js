@@ -27,7 +27,7 @@ const Cards = props => {
     editClass = '';
   }
   return (
-    <div classsName={classField}>
+    <div className={classField}>
       <div className={`card ${editClass} double-gap-top`}>
         <div className="card-header">
           <span>{props.cardHeaderText}</span>
