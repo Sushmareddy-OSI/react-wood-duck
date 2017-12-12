@@ -1,87 +1,94 @@
 import React from 'react';
-import GlobalHeader from '../GlobalHeader.js';
+import GlobalHeader from '../GlobalHeader';
+import GlobalHeaderIcon from '../GlobalHeaderIcon';
+import ProfileAvatar from '../ProfileAvatar';
 import { shallow, mount } from 'enzyme';
 import './EnzymeSetup';
 
 describe('Global Header', () => {
-  var input = {
-    logo: 'testlogo',
-    profileName: 'testProfileName',
-    profileAvatar: 'testProfileAvatar',
-  };
+  const searchIcon = <i className="fa fa-search" />;
+  const addIcon = <i className="fa fa-plus" />;
+  const notificationIcon = <i className="fa fa-bell" />;
 
-  const globalHeader = shallow(<GlobalHeader />);
-  const headerswithProps = shallow(<GlobalHeader {...input} />);
-  const globalHeaderlogout = mount(<GlobalHeader />);
+  describe('With default properties', () => {
+    const globalHeader = shallow(<GlobalHeader />);
 
-  it('renders the tag', () => {
-    expect(globalHeader.type()).toBe('header');
-  });
-
-  it('verify the className', () => {
-    expect(globalHeader.props().className).toBe('container-fluid');
-  });
-
-  it('find element with tag', () => {
-    expect(globalHeader.find('div').length).toEqual(5);
-    expect(globalHeader.find('ul').length).toEqual(1);
-    expect(globalHeader.find('li').length).toEqual(5);
-  });
-
-  it('find element with class and default props', () => {
-    const defaultSearchIcon = <i className="fa fa-search" />;
-    const defaultAddIcon = <i className="fa fa-plus" />;
-    const defaultBellIcon = <i className="fa fa-bell" />;
-
-    expect(globalHeader.find('.row').length).toEqual(1);
-    expect(globalHeader.find('.logo').props().className).toEqual('logo');
-    expect(globalHeader.find('.logo').text()).toEqual('CWDS');
-    expect(globalHeader.find('ul').hasClass('header-actions')).toBe(true);
-    expect(globalHeader.find('.profile').props().className).toEqual('profile');
-    expect(globalHeader.find('.profile').text()).toEqual(' Profile Name');
-    expect(globalHeader.find('.profile-avatar').props().className).toEqual(
-      'profile-avatar'
-    );
-    expect(globalHeader.find('.profile-avatar').text()).toEqual('PN');
-    expect(globalHeader.containsMatchingElement(defaultSearchIcon)).toBe(true);
-    expect(globalHeader.containsMatchingElement(defaultAddIcon)).toBe(true);
-    expect(globalHeader.containsMatchingElement(defaultBellIcon)).toBe(true);
-  });
-
-  it('find element with class and object passed as props', () => {
-    expect(headerswithProps.find('.logo').text()).toEqual('testlogo');
-    expect(headerswithProps.find('.profile').text()).toEqual(
-      ' testProfileName'
-    );
-    expect(headerswithProps.find('.profile-avatar').text()).toEqual(
-      'testProfileAvatar'
-    );
-  });
-
-  describe('#logout', () => {
-    it('allows a logout when clicking profile', () => {
-      const logoutUrl = '#/';
-      const profileAvatar = globalHeaderlogout
-        .find('.profile-avatar')
-        .find('a');
-
-      globalHeaderlogout.setProps({ logoutUrl });
-
-      profileAvatar.simulate('click');
-
-      const dropdown = globalHeaderlogout.find('.c_dropdown');
-
-      expect(dropdown.length).toBe(1);
-      expect(dropdown.props().className).toEqual('c_dropdown');
-      expect(dropdown.find('a').props().href).toEqual(logoutUrl);
+    it('renders the tag', () => {
+      expect(globalHeader.type()).toBe('header');
     });
 
-    it('hides a logout dropdown when clicking on profile avatar', () => {
-      const profileAvatar = globalHeaderlogout.find('.profile-avatar');
+    it('verify the className', () => {
+      expect(globalHeader.props().className).toBe('container-fluid');
+    });
 
-      profileAvatar.simulate('blur');
+    it('renders nav element', () => {
+      expect(globalHeader.find('nav').length).toEqual(1);
+    });
 
-      expect(profileAvatar.length).toBe(1);
+    it('renders logo', () => {
+      expect(globalHeader.find('.logo').text()).toEqual('CWDS');
+    });
+
+    it('renders search icon without callback', () => {
+      expect(globalHeader.contains(<GlobalHeaderIcon icon={searchIcon} ariaLabel='search' />)).toBe(true);
+    });
+
+    it('renders add icon without callback', () => {
+      expect(globalHeader.contains(<GlobalHeaderIcon icon={addIcon} ariaLabel='add new' />)).toBe(true);
+    });
+
+    it('defines notification icon without callback', () => {
+      expect(globalHeader.contains(<GlobalHeaderIcon icon={notificationIcon} ariaLabel='notifications' />)).toBe(true);
+    });
+
+    it('renders empty profile name', () => {
+      expect(globalHeader.find('.profile a').text()).toBe('');
+    });
+  });
+
+  describe('With given properties', () => {
+    var input = {
+      logo: 'testlogo',
+      logoCallback: function() {},
+      profileId: 'user.id',
+      profileName: 'testProfileName',
+      profileAvatar: 'testProfileAvatar',
+      searchIconCallback: function() {},
+      addIconCallback: function() {},
+      notificationIconCallback: function() {},
+      logoutCallback: function() {},
+    };
+    let globalHeaderWithProps;
+    beforeEach(function() {
+      spyOn(input, 'logoCallback');
+      globalHeaderWithProps = shallow(<GlobalHeader {...input} />);
+      globalHeaderWithProps.find('.logo').find('a').simulate('click');
+      expect(input.logoCallback).toHaveBeenCalled();
+    });
+
+    it('click on logo invokes logoCallback', () => {
+      globalHeaderWithProps.find('.logo').simulate('click');
+      expect(input.logoCallback).toHaveBeenCalled();
+    });
+
+    it('renders search icon', () => {
+      expect(globalHeaderWithProps.contains(<GlobalHeaderIcon icon={searchIcon} ariaLabel='search' callback={input.searchIconCallback} profileId={input.profileId} />)).toBe(true);
+    });
+
+    it('renders add icon with callback', () => {
+      expect(globalHeaderWithProps.contains(<GlobalHeaderIcon icon={addIcon} ariaLabel='add new' callback={input.addIconCallback} profileId={input.profileId} />)).toBe(true);
+    });
+
+    it('renders notification icon with callback', () => {
+      expect(globalHeaderWithProps.contains(<GlobalHeaderIcon icon={notificationIcon} ariaLabel='notifications' callback={input.notificationIconCallback} profileId={input.profileId} />)).toBe(true);
+    });
+
+    it('renders empty profile name with callback', () => {
+      expect(globalHeaderWithProps.find('.profile a').text()).toBe(input.profileName);
+    });
+
+    it('renders profile avatar with given profileAvatar property', () => {
+      expect(globalHeaderWithProps.contains(<ProfileAvatar profileId={input.profileId} profileAvatar={input.profileAvatar} logoutCallback={input.logoutCallback}/>)).toBe(true);
     });
   });
 });

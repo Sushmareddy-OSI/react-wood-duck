@@ -42,7 +42,10 @@ header {
     }
 
     &:focus {
-     color: $white;
+      color: $white;
+      box-shadow: none;
+      border-color: transparent;
+      text-decoration: none;
     }
   }
   ul.header-actions {
@@ -77,9 +80,14 @@ header {
       background-color: $teel-blue;
       color: $white;
       flex: 0 0 15%;
-      padding: 0.45rem;
+      padding: 0.40rem 0.25rem 0.25rem 0.15rem;
       text-align: center;
       cursor: pointer;
+      a:focus, a:hover, a:active {
+        background-color: transparent;
+        box-shadow: none;
+        border-color: transparent;
+  }
     }
   }
   .c_dropdown {
@@ -113,19 +121,19 @@ header {
         height: 0;
         width: 0;
         position: absolute;
-        pointer-events: none; 
+        pointer-events: none;
     }
 
-    .c_dropdown:after { 
+    .c_dropdown:after {
         border-bottom-color: #fff;
         border-width: 0.8rem;
-        margin-left: -1.5rem; 
+        margin-left: -1.5rem;
     }
 
     .c_dropdown:before {
         border-color: rgba(136, 183, 213, 0);
         border-bottom-color: #fff;
         border-width: 0.8rem;
-        margin-left: -1.5rem; 
+        margin-left: -1.5rem;
     }
 }
