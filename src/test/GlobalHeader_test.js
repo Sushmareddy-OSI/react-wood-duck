@@ -51,7 +51,10 @@ describe('Global Header', () => {
     it('contains notification action without callback', () => {
       expect(
         globalHeader.contains(
-          <GlobalHeaderAction icon={notificationIcon} ariaLabel="notifications" />
+          <GlobalHeaderAction
+            icon={notificationIcon}
+            ariaLabel="notifications"
+          />
         )
       ).toBe(true);
     });

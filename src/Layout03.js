@@ -6,7 +6,11 @@ import SideBar from './SideBar.js';
 
 class Layout03 extends React.Component {
   render() {
-    const { globalHeaderProps, sideBarContent, sideBarColumnWidth } = this.props;
+    const {
+      globalHeaderProps,
+      sideBarContent,
+      sideBarColumnWidth,
+    } = this.props;
     return (
       <div>
         <GlobalHeader {...globalHeaderProps} />
