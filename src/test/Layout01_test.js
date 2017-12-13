@@ -6,10 +6,16 @@ import { shallow } from 'enzyme';
 import './EnzymeSetup';
 
 describe('Layout01', () => {
-  const wrapper = shallow(<Layout01 />);
+  const globalHeaderProps = {
+    searchCallback: function() {},
+    addNewCallback: function() {},
+    notificationsCallback: function() {},
+    logoutCallback: function() {},
+  };
+  const wrapper = shallow(<Layout01 globalHeaderProps={globalHeaderProps} />);
 
   it('contains matching elements', () => {
     expect(wrapper.containsMatchingElement(<PageHeader />)).toEqual(true);
-    expect(wrapper.containsMatchingElement(<GlobalHeader />)).toEqual(true);
+    expect(wrapper.containsMatchingElement(<GlobalHeader {...globalHeaderProps} />)).toEqual(true);
   });
 });
