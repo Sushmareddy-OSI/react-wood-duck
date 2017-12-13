@@ -16,6 +16,8 @@ describe('Layout01', () => {
 
   it('contains matching elements', () => {
     expect(wrapper.containsMatchingElement(<PageHeader />)).toEqual(true);
-    expect(wrapper.containsMatchingElement(<GlobalHeader {...globalHeaderProps} />)).toEqual(true);
+    expect(
+      wrapper.containsMatchingElement(<GlobalHeader {...globalHeaderProps} />)
+    ).toEqual(true);
   });
 });
