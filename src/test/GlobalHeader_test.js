@@ -1,9 +1,10 @@
 import React from 'react';
+import { shallow } from 'enzyme';
+import './EnzymeSetup';
+
 import GlobalHeader from '../GlobalHeader';
 import GlobalHeaderIcon from '../GlobalHeaderIcon';
 import ProfileAvatar from '../ProfileAvatar';
-import { shallow, mount } from 'enzyme';
-import './EnzymeSetup';
 
 describe('Global Header', () => {
   const searchIcon = <i className="fa fa-search" />;
@@ -26,19 +27,31 @@ describe('Global Header', () => {
     });
 
     it('renders logo', () => {
-      expect(globalHeader.find('.logo').text()).toEqual('CWDS');
+      expect(globalHeader.findWhere(n => n.text() === 'CWDS').exists()).toBe(true);
     });
 
     it('renders search icon without callback', () => {
-      expect(globalHeader.contains(<GlobalHeaderIcon icon={searchIcon} ariaLabel='search' />)).toBe(true);
+      expect(
+        globalHeader.contains(
+          <GlobalHeaderIcon icon={searchIcon} ariaLabel="search" />
+        )
+      ).toBe(true);
     });
 
     it('renders add icon without callback', () => {
-      expect(globalHeader.contains(<GlobalHeaderIcon icon={addIcon} ariaLabel='add new' />)).toBe(true);
+      expect(
+        globalHeader.contains(
+          <GlobalHeaderIcon icon={addIcon} ariaLabel="add new" />
+        )
+      ).toBe(true);
     });
 
     it('defines notification icon without callback', () => {
-      expect(globalHeader.contains(<GlobalHeaderIcon icon={notificationIcon} ariaLabel='notifications' />)).toBe(true);
+      expect(
+        globalHeader.contains(
+          <GlobalHeaderIcon icon={notificationIcon} ariaLabel="notifications" />
+        )
+      ).toBe(true);
     });
 
     it('renders empty profile name', () => {
@@ -60,35 +73,74 @@ describe('Global Header', () => {
     };
     let globalHeaderWithProps;
     beforeEach(function() {
-      spyOn(input, 'logoCallback');
       globalHeaderWithProps = shallow(<GlobalHeader {...input} />);
-      globalHeaderWithProps.find('.logo').find('a').simulate('click');
-      expect(input.logoCallback).toHaveBeenCalled();
     });
 
     it('click on logo invokes logoCallback', () => {
-      globalHeaderWithProps.find('.logo').simulate('click');
+      spyOn(input, 'logoCallback');
+      globalHeaderWithProps.setProps({'logoCallback': input.logoCallback});
+      globalHeaderWithProps
+        .find('.logo')
+        .find('button')
+        .simulate('click');
       expect(input.logoCallback).toHaveBeenCalled();
     });
 
     it('renders search icon', () => {
-      expect(globalHeaderWithProps.contains(<GlobalHeaderIcon icon={searchIcon} ariaLabel='search' callback={input.searchIconCallback} profileId={input.profileId} />)).toBe(true);
+      expect(
+        globalHeaderWithProps.contains(
+          <GlobalHeaderIcon
+            icon={searchIcon}
+            ariaLabel="search"
+            callback={input.searchIconCallback}
+            profileId={input.profileId}
+          />
+        )
+      ).toBe(true);
     });
 
     it('renders add icon with callback', () => {
-      expect(globalHeaderWithProps.contains(<GlobalHeaderIcon icon={addIcon} ariaLabel='add new' callback={input.addIconCallback} profileId={input.profileId} />)).toBe(true);
+      expect(
+        globalHeaderWithProps.contains(
+          <GlobalHeaderIcon
+            icon={addIcon}
+            ariaLabel="add new"
+            callback={input.addIconCallback}
+            profileId={input.profileId}
+          />
+        )
+      ).toBe(true);
     });
 
     it('renders notification icon with callback', () => {
-      expect(globalHeaderWithProps.contains(<GlobalHeaderIcon icon={notificationIcon} ariaLabel='notifications' callback={input.notificationIconCallback} profileId={input.profileId} />)).toBe(true);
+      expect(
+        globalHeaderWithProps.contains(
+          <GlobalHeaderIcon
+            icon={notificationIcon}
+            ariaLabel="notifications"
+            callback={input.notificationIconCallback}
+            profileId={input.profileId}
+          />
+        )
+      ).toBe(true);
     });
 
     it('renders empty profile name with callback', () => {
-      expect(globalHeaderWithProps.find('.profile a').text()).toBe(input.profileName);
+      expect(globalHeaderWithProps.find('.profile a').text()).toBe(
+        input.profileName
+      );
     });
 
     it('renders profile avatar with given profileAvatar property', () => {
-      expect(globalHeaderWithProps.contains(<ProfileAvatar profileId={input.profileId} profileAvatar={input.profileAvatar} logoutCallback={input.logoutCallback}/>)).toBe(true);
+      expect(
+        globalHeaderWithProps.contains(
+          <ProfileAvatar
+            profileId={input.profileId}
+            profileAvatar={input.profileAvatar}
+            logoutCallback={input.logoutCallback}
+          />
+        )
+      ).toBe(true);
     });
   });
 });

@@ -22,13 +22,14 @@ const GlobalHeaderStory = withInfo(
   `
 )(() => (
   <GlobalHeader
-      profileName='Profile Name'
-      profileId='profile.id'
-      logoCallback={callback}
-      searchIconCallback={callback}
-      addIconCallback={callback}
-      notificationIconCallback={callback}
-      logoutCallback={callback} />
+    profileName="Profile Name"
+    profileId="profile.id"
+    logoCallback={callback}
+    searchIconCallback={callback}
+    addIconCallback={callback}
+    notificationIconCallback={callback}
+    logoutCallback={callback}
+  />
 ));
 
 storiesOf('Components', module).add('GlobalHeader', GlobalHeaderStory);

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class ProfileAvatar extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -29,7 +28,11 @@ class ProfileAvatar extends React.Component {
     return (
       <ul className="c_dropdown">
         <li>
-          <a href="#/" onClick={event => this.props.logoutCallback(this.props.profileId, event)}>
+          <a
+            href="#/"
+            onClick={event =>
+              this.props.logoutCallback(this.props.profileId, event)}
+          >
             Logout
           </a>
         </li>
@@ -38,35 +41,35 @@ class ProfileAvatar extends React.Component {
   }
 
   render() {
-    const { profileId, profileAvatar, logoutCallback} = this.props;
-    if( !profileId && !logoutCallback) return null;
+    const { profileId, profileAvatar, logoutCallback } = this.props;
+    if (!profileId && !logoutCallback) return null;
     return (
-    <div className="profile-avatar">
-       <a
-         href="#/"
-         onClick={this._handleChange}
-         tabIndex="0"
-         onBlur={this._handleBlur}
-         >
-           {profileAvatar}
-         </a>
-         {(logoutCallback && !this.state.isHidden) && this._renderToggle()}
-    </div>
+      <div className="profile-avatar">
+        <a
+          href="#/"
+          onClick={this._handleChange}
+          tabIndex="0"
+          onBlur={this._handleBlur}
+        >
+          {profileAvatar}
+        </a>
+        {logoutCallback && !this.state.isHidden && this._renderToggle()}
+      </div>
     );
   }
 }
 
-PropTypes.ProfileAvatar = {
+ProfileAvatar.propTypes = {
   /** profile id OR user id if a user is logged in */
   profileId: PropTypes.string,
   /** profile avatar */
   profileAvatar: PropTypes.node,
   /** callback for logout */
-  logoutCallback: PropTypes.func
-}
+  logoutCallback: PropTypes.func,
+};
 
 ProfileAvatar.defaultProps = {
-  profileAvatar: <i className="fa fa-user" />
-}
+  profileAvatar: <i className="fa fa-user" />,
+};
 
 export default ProfileAvatar;

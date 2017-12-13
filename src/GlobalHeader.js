@@ -9,7 +9,6 @@ const addIcon = () => <i className="fa fa-plus" />;
 const notificationIcon = () => <i className="fa fa-bell" />;
 
 class GlobalHeader extends React.Component {
-
   render() {
     const {
       logoCallback,
@@ -19,20 +18,43 @@ class GlobalHeader extends React.Component {
       searchIconCallback,
       addIconCallback,
       notificationIconCallback,
-      logoutCallback
+      logoutCallback,
     } = this.props;
     return (
       <header className="container-fluid" role="banner">
         <nav className="row">
           <div className="col-xs-12 col-sm-1">
-            <div className="logo"><a href='#' onClick={logoCallback}>{logo}</a></div>
+            <div className="logo">
+              <button
+                className="btn btn-link"
+                type="button"
+                onClick={logoCallback}
+              >
+                {logo}
+              </button>
+            </div>
           </div>
           <div className="col-xs-12 col-sm-11">
             <div className="pull-right">
               <ul className="header-actions">
-                <GlobalHeaderIcon icon={searchIcon()} ariaLabel='search' callback={searchIconCallback} profileId={profileId} />
-                <GlobalHeaderIcon icon={addIcon()} ariaLabel='add new' callback={addIconCallback} profileId={profileId} />
-                <GlobalHeaderIcon icon={notificationIcon()} ariaLabel='notifications' callback={notificationIconCallback} profileId={profileId} />
+                <GlobalHeaderIcon
+                  icon={searchIcon()}
+                  ariaLabel="search"
+                  callback={searchIconCallback}
+                  profileId={profileId}
+                />
+                <GlobalHeaderIcon
+                  icon={addIcon()}
+                  ariaLabel="add new"
+                  callback={addIconCallback}
+                  profileId={profileId}
+                />
+                <GlobalHeaderIcon
+                  icon={notificationIcon()}
+                  ariaLabel="notifications"
+                  callback={notificationIconCallback}
+                  profileId={profileId}
+                />
                 <li>
                   <p className="profile">
                     {' '}
@@ -40,7 +62,11 @@ class GlobalHeader extends React.Component {
                   </p>
                 </li>
                 <li>
-                  <ProfileAvatar profileId={profileId} profileAvatar={profileAvatar} logoutCallback={logoutCallback} />
+                  <ProfileAvatar
+                    profileId={profileId}
+                    profileAvatar={profileAvatar}
+                    logoutCallback={logoutCallback}
+                  />
                 </li>
               </ul>
             </div>
