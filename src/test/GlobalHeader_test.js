@@ -27,7 +27,9 @@ describe('Global Header', () => {
     });
 
     it('renders logo', () => {
-      expect(globalHeader.findWhere(n => n.text() === 'CWDS').exists()).toBe(true);
+      expect(globalHeader.findWhere(n => n.text() === 'CWDS').exists()).toBe(
+        true
+      );
     });
 
     it('renders search icon without callback', () => {
@@ -78,7 +80,7 @@ describe('Global Header', () => {
 
     it('click on logo invokes logoCallback', () => {
       spyOn(input, 'logoCallback');
-      globalHeaderWithProps.setProps({'logoCallback': input.logoCallback});
+      globalHeaderWithProps.setProps({ logoCallback: input.logoCallback });
       globalHeaderWithProps
         .find('.logo')
         .find('button')
