@@ -43,6 +43,17 @@ const sideBarContent = (
     />
   </NavLinks>
 );
-const DetailPage = () => <Layout03 sideBarContent={sideBarContent} />;
+const globalHeaderProps = {
+  searchCallback: function() {},
+  addNewCallback: function() {},
+  notificationsCallback: function() {},
+  logoutCallback: function() {},
+};
+const DetailPage = () => (
+  <Layout03
+    sideBarContent={sideBarContent}
+    globalHeaderProps={globalHeaderProps}
+  />
+);
 
 storiesOf('Page Templates', module).add('03 Detail Page Template', DetailPage);

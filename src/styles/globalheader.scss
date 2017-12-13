@@ -22,7 +22,7 @@ header {
       opacity: 1;
     }
   }
-  a {
+  a, .btn.btn-link {
     color: $white;
     opacity: 0.87;
 
@@ -39,10 +39,15 @@ header {
 
     &:focus {
       color: $white;
+      opacity: 1;
       box-shadow: none;
       border-color: transparent;
       text-decoration: none;
+      outline: none;
     }
+  }
+  .btn-link {
+    padding: 0em;
   }
   ul.header-actions {
     li {
@@ -83,6 +88,7 @@ header {
         background-color: transparent;
         box-shadow: none;
         border-color: transparent;
+        outline: none;
   }
     }
   }

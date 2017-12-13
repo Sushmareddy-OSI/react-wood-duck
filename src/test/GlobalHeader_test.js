@@ -3,12 +3,12 @@ import { shallow } from 'enzyme';
 import './EnzymeSetup';
 
 import GlobalHeader from '../GlobalHeader';
-import GlobalHeaderIcon from '../GlobalHeaderIcon';
+import GlobalHeaderAction from '../GlobalHeaderAction';
 import ProfileAvatar from '../ProfileAvatar';
 
 describe('Global Header', () => {
   const searchIcon = <i className="fa fa-search" />;
-  const addIcon = <i className="fa fa-plus" />;
+  const addNewIcon = <i className="fa fa-plus" />;
   const notificationIcon = <i className="fa fa-bell" />;
 
   describe('With default properties', () => {
@@ -32,26 +32,26 @@ describe('Global Header', () => {
       );
     });
 
-    it('renders search icon without callback', () => {
+    it('contains search action without callback', () => {
       expect(
         globalHeader.contains(
-          <GlobalHeaderIcon icon={searchIcon} ariaLabel="search" />
+          <GlobalHeaderAction icon={searchIcon} ariaLabel="search" />
         )
       ).toBe(true);
     });
 
-    it('renders add icon without callback', () => {
+    it('contains add action without callback', () => {
       expect(
         globalHeader.contains(
-          <GlobalHeaderIcon icon={addIcon} ariaLabel="add new" />
+          <GlobalHeaderAction icon={addNewIcon} ariaLabel="add new" />
         )
       ).toBe(true);
     });
 
-    it('defines notification icon without callback', () => {
+    it('contains notification action without callback', () => {
       expect(
         globalHeader.contains(
-          <GlobalHeaderIcon icon={notificationIcon} ariaLabel="notifications" />
+          <GlobalHeaderAction icon={notificationIcon} ariaLabel="notifications" />
         )
       ).toBe(true);
     });
@@ -68,9 +68,9 @@ describe('Global Header', () => {
       profileId: 'user.id',
       profileName: 'testProfileName',
       profileAvatar: 'testProfileAvatar',
-      searchIconCallback: function() {},
-      addIconCallback: function() {},
-      notificationIconCallback: function() {},
+      searchCallback: function() {},
+      addNewCallback: function() {},
+      notificationsCallback: function() {},
       logoutCallback: function() {},
     };
     let globalHeaderWithProps;
@@ -91,36 +91,36 @@ describe('Global Header', () => {
     it('renders search icon', () => {
       expect(
         globalHeaderWithProps.contains(
-          <GlobalHeaderIcon
+          <GlobalHeaderAction
             icon={searchIcon}
             ariaLabel="search"
-            callback={input.searchIconCallback}
+            callback={input.searchCallback}
             profileId={input.profileId}
           />
         )
       ).toBe(true);
     });
 
-    it('renders add icon with callback', () => {
+    it('renders "add new" action with callback', () => {
       expect(
         globalHeaderWithProps.contains(
-          <GlobalHeaderIcon
-            icon={addIcon}
+          <GlobalHeaderAction
+            icon={addNewIcon}
             ariaLabel="add new"
-            callback={input.addIconCallback}
+            callback={input.addNewCallback}
             profileId={input.profileId}
           />
         )
       ).toBe(true);
     });
 
-    it('renders notification icon with callback', () => {
+    it('renders notification action with callback', () => {
       expect(
         globalHeaderWithProps.contains(
-          <GlobalHeaderIcon
+          <GlobalHeaderAction
             icon={notificationIcon}
             ariaLabel="notifications"
-            callback={input.notificationIconCallback}
+            callback={input.notificationsCallback}
             profileId={input.profileId}
           />
         )

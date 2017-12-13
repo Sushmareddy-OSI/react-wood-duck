@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import GlobalHeaderIcon from './GlobalHeaderIcon';
+import GlobalHeaderAction from './GlobalHeaderAction';
 import ProfileAvatar from './ProfileAvatar';
 
 const logo = 'CWDS';
@@ -15,9 +15,9 @@ class GlobalHeader extends React.Component {
       profileId,
       profileName,
       profileAvatar,
-      searchIconCallback,
-      addIconCallback,
-      notificationIconCallback,
+      searchCallback,
+      addNewCallback,
+      notificationsCallback,
       logoutCallback,
     } = this.props;
     return (
@@ -37,22 +37,22 @@ class GlobalHeader extends React.Component {
           <div className="col-xs-12 col-sm-11">
             <div className="pull-right">
               <ul className="header-actions">
-                <GlobalHeaderIcon
+                <GlobalHeaderAction
                   icon={searchIcon()}
                   ariaLabel="search"
-                  callback={searchIconCallback}
+                  callback={searchCallback}
                   profileId={profileId}
                 />
-                <GlobalHeaderIcon
+                <GlobalHeaderAction
                   icon={addIcon()}
                   ariaLabel="add new"
-                  callback={addIconCallback}
+                  callback={addNewCallback}
                   profileId={profileId}
                 />
-                <GlobalHeaderIcon
+                <GlobalHeaderAction
                   icon={notificationIcon()}
                   ariaLabel="notifications"
-                  callback={notificationIconCallback}
+                  callback={notificationsCallback}
                   profileId={profileId}
                 />
                 <li>
@@ -89,11 +89,11 @@ GlobalHeader.propTypes = {
   /** callback to logout user */
   logoutCallback: PropTypes.func,
   /** callback to customize search functionality */
-  searchIconCallback: PropTypes.func,
+  searchCallback: PropTypes.func,
   /** callback to customize 'Add New' functionality */
-  addIconCallback: PropTypes.func,
+  addNewCallback: PropTypes.func,
   /** notification callback to show notifications */
-  notificationIconCallback: PropTypes.func,
+  notificationsCallback: PropTypes.func,
 };
 
 GlobalHeader.defaultProps = {
