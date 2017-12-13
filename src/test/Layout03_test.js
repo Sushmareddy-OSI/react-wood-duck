@@ -10,6 +10,12 @@ import './EnzymeSetup';
 
 describe('Layout03', function() {
   const clickHandler = function() {};
+  const globalHeaderProps = {
+    searchCallback: function() {},
+    addNewCallback: function() {},
+    notificationsCallback: function() {},
+    logoutCallback: function() {},
+  };
   const sideBarContent = (
     <NavLinks>
       <NavLink
@@ -32,6 +38,7 @@ describe('Layout03', function() {
   const sideBarWidth = 4;
   const wrapper = shallow(
     <Layout03
+      globalHeaderProps={globalHeaderProps}
       sideBarContent={sideBarContent}
       sideBarColumnWidth={sideBarWidth}
     />
@@ -43,7 +50,9 @@ describe('Layout03', function() {
 
   it('contains matching elements', () => {
     expect(wrapper.containsMatchingElement(<PageHeader />)).toEqual(true);
-    expect(wrapper.containsMatchingElement(<GlobalHeader />)).toEqual(true);
+    expect(
+      wrapper.containsMatchingElement(<GlobalHeader {...globalHeaderProps} />)
+    ).toEqual(true);
     expect(
       wrapper.containsMatchingElement(
         <SideBar columnWidth={sideBarWidth}>{sideBarContent}</SideBar>
