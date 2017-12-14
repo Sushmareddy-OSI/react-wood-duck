@@ -5,6 +5,7 @@ import { withInfo } from '@storybook/addon-info';
 
 import Cards from '../../src/Cards';
 
+const CenterDecorator = storyFn => <div className="container">{storyFn()}</div>;
 const cardBody = (
   <div>
     <div className="row">
@@ -70,6 +71,12 @@ const CardsStory = withInfo(
     
       - Saving the card should keep
   `
-)(() => <Cards cardHeaderText="Profile Information">{cardBody}</Cards>);
+)(() => (
+  <Cards cardHeaderText="Profile Information" cardbgcolor="transparent">
+    {cardBody}
+  </Cards>
+));
 
-storiesOf('Components', module).add('Cards', CardsStory);
+storiesOf('Components', module)
+  .addDecorator(CenterDecorator)
+  .add('Cards', CardsStory);

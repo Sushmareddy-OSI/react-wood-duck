@@ -31,14 +31,12 @@
 
 .input-error-label {
   display: block;
-  font-size: $medium-font;
   font-weight: $normal-weight;
 }
 
 .input-error-message {
   color: $red;
   display: block;
-  font-size: $medium-font;
   padding-top: $smallplus-spacing;
 }
 
@@ -67,7 +65,7 @@
 
   .alert-icon {
     display: table-cell;
-    font-size: $mediumplus-font;
+    font-size: $h3-title-font-size;
     padding: $medium-spacing;
     text-align: center;
     vertical-align: middle;
@@ -85,12 +83,10 @@
     border-top: $thin-border solid;
     border-bottom: $thin-border solid;
     border-color: $ash-grey;
-    font-size: $medium-font;
   }
   .alert-cross {
     display: table-cell;
     color: $dark-grey;
-    font-size: $medium-font;
     padding: $medium-spacing;
     text-align: center;
     cursor: pointer;

@@ -32,7 +32,7 @@
     $ash-green 90%,
     $dark-ash-blue 100%
   );
-  height: set-height();
+  height: $mast-height;
   padding-bottom: $medium-spacing;
   padding-top: $medium-spacing;
   position: sticky;
@@ -43,7 +43,7 @@
 }
 .page-title {
   color: $white;
-  font-size: $larger-font;
+  font-size: $h2-card-header-font-size;
   height: (5rem / $mast-height) * 100%;
   padding-bottom: $extra-small-spacing;
   padding-top: $extra-small-spacing;
@@ -54,7 +54,7 @@
   border-radius: $small-border-radius;
   color: $white;
   cursor: pointer;
-  font-size: $medium-font;
+  font-size: $base-font;
   font-weight: $semibold-weight;
   line-height: 1.321rem;
   padding: $medium-spacing;

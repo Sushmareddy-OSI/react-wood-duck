@@ -1,31 +1,41 @@
 /////////////////////////////////////////
 // - Font Families - //
 /////////////////////////////////////////
+
 $font-family: ‘Source Sans Pro’, ‘Helvetica Neue’, ‘Helvetica’, ‘Roboto’,
   ‘Arial’, sans-serif;
 $code-font-family: ‘Source Code Pro’, Consolas, Monaco, ‘Andale Mono’, monospace;
 $icon-font-family: ‘FontAwesome’;
+
 /////////////////////////////////////////
 // - Font Weights - //
 /////////////////////////////////////////
+
 $extralight-weight: 200;
 $light-weight: 300;
 $normal-weight: 400;
 $semibold-weight: 600;
 $bold-weight: 700;
+
 /////////////////////////////////////////
 // - Font Sizes - //
 /////////////////////////////////////////
-$small-font: 0.75rem;
+
+$root-font: 62.5%;
 $base-font: 1.5rem;
-$medium-font: 1.5rem;
-$mediumplus-font: 2rem;
-$large-font: 2.4rem;
-$larger-font: 2.8rem;
-$largest-font: 4rem;
+
+$h1-page-title-font-size: 2.8rem;
+$h2-card-header-font-size: 2.4rem;
+$h3-title-font-size: 2rem;
+$h4-subheader-font-size: 1.8rem;
+$helper-text-font-size: 1.4rem;
+
+// Our Styles
+
 /////////////////////////////////////////
 // - Spacing - //
 /////////////////////////////////////////
+
 $base-spacing: 1.5rem;
 $extra-small-spacing: 0.5rem;
 $small-spacing: 0.75rem;
@@ -39,32 +49,42 @@ $double-spacing: $base-spacing * 2;
 /////////////////////////////////////////
 // - Width - //
 /////////////////////////////////////////
+
 $extra-small-width: 0.1rem;
 $small-width: 0.5rem;
 $double-width: 6rem;
+
 /////////////////////////////////////////
 // - Border Width - //
 /////////////////////////////////////////
+
 $thin-border: 0.1rem;
 $regular-border: 0.2rem;
+
 /////////////////////////////////////////
 // - Border Radius - //
 /////////////////////////////////////////
+
 $base-border-radius: 0.2rem;
 $small-border-radius: $base-border-radius / 2;
+
 /////////////////////////////////////////
 // - Special Borders - //
 /////////////////////////////////////////
+
 %error-border {
   border: $base-border-radius solid $red;
   width: calc(100% +1.9rem);
 }
+
 /////////////////////////////////////////
 // - line height - //
 /////////////////////////////////////////
+
 $base-line-height: 1.4rem;
 
 /////////////////////////////////////////
 // - PageHeader - //
 /////////////////////////////////////////
+
 $mast-height: 8rem;

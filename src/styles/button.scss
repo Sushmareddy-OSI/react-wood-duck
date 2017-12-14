@@ -12,7 +12,7 @@
   cursor: pointer;
   display: inline-block;
   font-family: $font-family;
-  font-size: $medium-font;
+  font-size: $base-font;
   -webkit-font-smoothing: antialiased;
   font-weight: $bold-weight;
   line-height: 1;
@@ -29,7 +29,7 @@
     box-shadow: inset 0 0 0 $base-border-radius transparent;
     color: $teel-blue;
     padding: $medium-spacing;
-    
+
     &.btn-default:disabled {
       background-color: transparent;
       border: none;
