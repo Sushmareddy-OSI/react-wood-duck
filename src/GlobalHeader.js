@@ -21,7 +21,7 @@ class GlobalHeader extends React.Component {
       logoutCallback,
     } = this.props;
     return (
-      <header className="container-fluid" role="banner">
+      <header className="container" role="banner">
         <nav className="row">
           <div className="col-xs-12 col-sm-1">
             <div className="logo">

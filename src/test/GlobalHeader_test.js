@@ -19,7 +19,7 @@ describe('Global Header', () => {
     });
 
     it('verify the className', () => {
-      expect(globalHeader.props().className).toBe('container-fluid');
+      expect(globalHeader.props().className).toBe('container');
     });
 
     it('renders nav element', () => {
